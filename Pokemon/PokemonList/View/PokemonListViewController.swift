@@ -62,6 +62,8 @@ extension PokemonListViewController: UITableViewDelegate {
         viewModel.showDetailPage(navigationController: navController, pokemonResource: viewModel.pokemonResources[indexPath.row])
     }
     
+    // Using this method to fetch the next page of results if we reach the last cell
+    // in the table view (paging)
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if viewModel.canContinueFetching && indexPath.row == viewModel.pokemonResources.count - 1 {
             loadingIndicator.startAnimating()

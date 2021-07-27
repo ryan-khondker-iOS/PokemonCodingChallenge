@@ -60,6 +60,15 @@ class ApiService {
         task.resume()
     }
     
+    /**
+        This method is used to query PokeAPI to fetch a specific Pokemon
+        with the given URL. If we get a valid response back from the API,
+        we then convert it to a Pokemon object and pass the object
+        when we call the completion. If we get an error, then we pass the error
+        when we call the completion
+        - parameter urlString: the URL to fetch the results
+        - parameter completion: the completion block to be called once the API call is complete or if there are errors when making the API call
+     */
     class func getPokemonDataFromUrl(urlString: String, completion: @escaping (Result<Pokemon, Error>) -> ()) {
         guard let url = URL(string: urlString) else {
             completion(.failure(NetworkError.badUrl))

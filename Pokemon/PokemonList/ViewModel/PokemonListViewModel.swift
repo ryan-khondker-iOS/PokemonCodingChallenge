@@ -14,6 +14,7 @@ protocol PokemonListViewModelDelegate: class {
 
 class PokemonListViewModel {
     static let initialUrl = "https://pokeapi.co/api/v2/pokemon/"
+    static let maxPokemonToFetch = 300
     
     var pokemonResources: [PokemonResource] = []
     var nextUrl: String?
@@ -45,7 +46,8 @@ class PokemonListViewModel {
     }
     
     var canContinueFetching: Bool {
-        return pokemonResources.count < 300
+        // Limiting fetching up to 300 total Pokemon
+        return pokemonResources.count < PokemonListViewModel.maxPokemonToFetch
     }
     
     private func handleResults(_ result: Result<PokemonResults, Error>) {
